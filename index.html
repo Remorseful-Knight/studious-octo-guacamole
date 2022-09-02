@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css" />
+    <script src="/node_modules/flowbite/dist/flowbite.js"></script>
+    <script>
+      // On page load or when changing themes, best to add inline in `head` to avoid FOUC
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    </script>
+  </head>
+  <body>
+    <!-- navbar -->
+
+    <nav class="bg-zinc-200 border-gray-200 px-2 sm:px-4 py-2.5 dark:bg-black">
+      <div
+        class="container flex flex-wrap justify-between items-center mx-auto"
+      >
+        <a href="index.html" class="flex items-center">
+          <img
+            src="img/MUJ_central_logo.png"
+            class="h-10 sm:h-12"
+            alt="Flowbite Logo"
+          />
+        </a>
+        <div class="flex md:order-2">
+          <button
+            id="theme-toggle"
+            type="button"
+            class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5"
+          >
+            <svg
+              id="theme-toggle-dark-icon"
+              class="hidden w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+              ></path>
+            </svg>
+            <svg
+              id="theme-toggle-light-icon"
+              class="hidden w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+          <button
+            data-collapse-toggle="navbar-cta"
+            type="button"
+            class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+            aria-controls="navbar-cta"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Open main menu</span>
+            <svg
+              class="w-6 h-6"
+              aria-hidden="true"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </div>
+        <div
+          class="hidden justify-between items-center w-full md:flex md:w-auto md:order-1"
+          id="navbar-cta"
+        >
+          <ul
+            class="flex flex-col p-4 mt-4 bg-gray-50 rounded-lg border border-gray-100 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-zinc-200 dark:bg-gray-800 md:dark:bg-black dark:border-gray-700"
+          >
+            <li>
+              <a
+                href="index.html"
+                class="block py-2 pr-4 pl-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-500 md:p-0 dark:text-white"
+                aria-current="page"
+                >Home</a
+              >
+            </li>
+            <li>
+              <a
+                href="/connect.html"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Connect</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLSckX-fYZKhiL1p1xT7E85ueuiI0xlrbUiKxezCQBakW6k4-rw/viewform"
+                class="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                >Contribute</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- navbar ends -->
+
+    <section class="bg-white dark:bg-zinc-900">
+      <div
+        class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
+      >
+        <div class="mr-auto place-self-center lg:col-span-7">
+          <h1
+            class="max-w-2xl mb-4 text-3xl font-extrabold tracking-tight leading-none md:pl-5 md:text-4xl xl:text-6xl dark:text-white"
+          >
+            Hi👋 there freshers (Class of 2026)
+          </h1>
+          <p
+            class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:pl-5 md:text-lg lg:text-xl dark:text-gray-400"
+          >
+            Published 10 August 2022
+          </p>
+        </div>
+        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+          <img src="/img/hero gif.gif" alt="mockup" />
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white dark:bg-zinc-900">
+      <div class="py-4 px-4 mx-auto max-w-screen-xl sm:py-10 lg:px-6">
+        <div class="max-w-screen-md">
+          <h2
+            class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"
+          >
+            Welcome to Manipal University Jaipur!
+          </h2>
+          <p class="mb-8 font-bold text-gray-500 sm:text-xl dark:text-gray-400">
+            👋Hi there freshers, We hope you're having a great time and we can
+            understand how excited you are to come to college and explore what
+            it's like to be at Manipal University. We know that each day is
+            filled with anticipation of what college life will be like, how the
+            curriculum will be, etc. In the meantime, MUJ Central presents a
+            power-packed list of resources that you will need to succeed in your
+            first year.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white dark:bg-zinc-900">
+      <div
+        class="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12"
+      >
+        <div class="mr-auto place-self-center lg:col-span-7">
+          <h1
+            class="max-w-2xl mb-4 text-3xl font-extrabold tracking-tight leading-none md:pl-5 md:text-4xl xl:text-6xl dark:text-white"
+          >
+            📃Contents
+          </h1>
+          <p
+            class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:pl-5 md:text-lg lg:text-xl dark:text-gray-400"
+          >
+            <ul>
+              <div class="max-w-2xl mb-6 font-bold text-gray-500 lg:mb-4 md:pl-5 md:text-lg lg:text-xl dark:text-gray-200">
+                <li class="mb-4">
+                   <a class=" text-blue-400 hover:underline underline-offset-1 hover:text-blue-500" href="#Things to carry before you arrive at MUJ">⚠️Things to carry at MUJ</a>
+                  </li>
+                <li class="mb-4">
+                   <a class=" text-blue-400 hover:underline underline-offset-1 hover:text-blue-500" href="#academia">🚀Academia</a>
+                  </li>
+                <li class="mb-4">
+                   <a class=" text-blue-400 hover:underline underline-offset-1 hover:text-blue-500" href="">🍜Hostel Stuff</a>
+                  </li>
+                <li class="mb-4">
+                    <a class=" text-blue-400 hover:underline underline-offset-1 hover:text-blue-500" href="">😎Social Handles</a>
+                  </li>
+                <li class="mb-4">
+                     <a class=" text-blue-400 hover:underline underline-offset-1 hover:text-blue-500" href="">📚Course Material</a>
+                    </li>
+                <li class="mb-4">
+                    <a class=" text-blue-400 hover:underline underline-offset-1 hover:text-blue-500" href="">📃Important Contacts</a>
+                  </li>
+                <li class="mb-4">
+                     <a class=" text-blue-400 hover:underline underline-offset-1 hover:text-blue-500" href="">👉Bonus Resources</a>
+                    </li>
+                <li class="mb-4">
+                   <a class=" text-blue-400 hover:underline underline-offset-1 hover:text-blue-500" href="">🎙️List of Amazing Podcast</a>
+                  </li>
+              </div> 
+            </ul>
+          </p>
+        </div>
+        <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
+          <img src="/img/contents gif.gif" alt="mockup" />
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white dark:bg-zinc-900">
+      <div id="Things to carry before you arrive at MUJ" class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+          <h2 class="mb-8 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">⚠️Things to carry before you arrive at MUJ</h2>
+          <p class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">We know that each day is filled with anticipation of what college life will be like, how the curriculum will be, etc.😁 However, before you arrive at hostels, here some important stuff to carry so that you won't face any issue while moving into the hostels.
+            <br>
+            <br>
+            Here's the list of items that you should definitely not forget while moving in:</p>
+          <div class="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
+              <div>
+                  <div class="mb-4">
+                      <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                        <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#009cff;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                        15 days equivalent clothes
+                      </h3>
+                  </div>
+                  <div class="mb-4">                        
+                      <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                        <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                        Extension cord
+                      </h3>
+                  </div>
+                  <div class="mb-4">
+                      <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                        <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                        Deodorant
+                      </h3>
+                  </div>
+                  <div class="mb-4">
+                      <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                        <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                        Bedsheet(at least 2)
+                      </h3>
+                  </div>
+                  <div class="mb-4">
+                    <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                      <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#009cff;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                      Pillow + Pillow cover
+                    </h3>
+                </div>
+                <div class="mb-4">                        
+                    <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                      <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                      Hand-Wash, Shampoo, Conditioner
+                    </h3>
+                </div>
+                <div class="mb-4">
+                    <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                      <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                      Utensils;&#x2800 <div data-tooltip-target="tooltip-utensils" class="cursor-pointer text-blue-500 underline underline-offset-1 ">Info</div> <div id="tooltip-utensils" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                        1 Plate, 1 Spoon and fork each and 1 Beverage Mug (important)
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                    </h3>
+                </div>
+                <div class="mb-4">
+                    <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                      <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                      Face towels
+                    </h3>
+                </div>
+                <div class="mb-4">
+                  <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                    <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#009cff;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                    Bathing towel
+                  </h3>
+              </div>
+              <div class="mb-4">                        
+                  <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                    <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                    Dusting cloth
+                  </h3>
+              </div>
+              <div class="mb-4">
+                  <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                    <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                    Newspapers (lots of them)
+                  </h3>
+              </div>
+              <div class="mb-4">
+                  <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                    <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                    Swimming costume
+                  </h3>
+              </div>
+              <div class="mb-4">
+                <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                  <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#009cff;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                  Formal clothes,&#10240 <i> at least ek pair</i>
+                </h3>
+            </div>
+            <div class="mb-4">                        
+                <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                  <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                  Watch
+                </h3>
+            </div>
+            <div class="mb-4">
+                <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                  <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                  First aid kit
+                </h3>
+            </div>
+            <div class="mb-4">
+                <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                  <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                  Shaving kit
+                </h3>
+            </div>
+            <div class="mb-4">
+              <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#009cff;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                Comforter/ Ac quilts&#10240 <i>(as some may call)</i>
+              </h3>
+          </div>
+          <div class="mb-4">                        
+              <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                Two sets of spectacles
+              </h3>
+          </div>
+          <div class="mb-4">
+              <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                Sports equipments (if you're into any)
+              </h3>
+          </div>
+          <div class="mb-4">
+              <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+                <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+                Headphones/earphones
+              </h3>
+          </div>
+          <div class="mb-4">
+            <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+              <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#009cff;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+              Passport sized photos
+            </h3>
+        </div>
+        <div class="mb-4">                        
+            <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+              <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+              Important docs(hard as well as soft copies)
+            </h3>
+        </div>
+        <div class="mb-4">
+            <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+              <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+              Water bottle
+            </h3>
+        </div>
+        <div class="mb-4">
+            <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+              <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+              Laptop (for engineering, specially CSE,IT,CCE)
+            </h3>
+        </div>
+        <div class="mb-4">
+          <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+            <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#009cff;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+            Passport sized photos
+          </h3>
+      </div>
+      <div class="mb-4">                        
+          <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+            <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+            Important docs(hard as well as soft copies)
+          </h3>
+      </div>
+      <div class="mb-4">
+          <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+            <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+            Water bottle
+          </h3>
+      </div>
+      <div class="mb-4">
+          <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+            <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+            Laptop (for engineering, specially CSE,IT,CCE)
+          </h3>
+      </div>
+      <div class="mb-4">
+        <h3 class="flex items-center mb-4 text-md font-medium text-gray-900 dark:text-white">
+          <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#009cff;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+          Do get your Paytm KYC done.&#10240 <div class=" cursor-pointer text-blue-500 underline underline-offset-1 " data-tooltip-target="tooltip-paytm">Info</div>
+          <div id="tooltip-paytm" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700 max-w-2xl">
+            MUJ has a cashless atmosphere, Paytm is most widely used here, as change problems arise in denominations. Hope it helps. If anything else comes up, it will be updated.
+            <div class="tooltip-arrow" data-popper-arrow></div>
+        </div>
+        </h3>
+    </div>
+      <div>
+        <div class="">
+            <h3 class="flex items-center mb-2 text-md font-medium text-gray-900 dark:text-white">
+              <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+              Medicines&#10240 <div data-tooltip-target="tooltip-medicine" class="cursor-pointer text-blue-500 underline underline-offset-1">Info</div>
+              <div id="tooltip-medicine" role="tooltip" class="inline-block absolute invisible z-10 py-2 px-3 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 transition-opacity duration-300 tooltip dark:bg-gray-700">
+                some are needed, but later you can buy directly @MUJ
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+            </h3>
+        </div>
+        <ul class="ml-12 mb-4 space-y-1 max-w-md list-disc list-inside text-gray-500 dark:text-gray-400">
+          <li>Eyedrops</li>
+          <li>Paracetamol</li>
+          <li> Band-aids</li>
+          <li>Digene/pudin hara</li>
+          <li>Metrogyl</li>
+          <li>Disprin</li>
+          <li>Volini (sprain meds)</li>
+          <li> Headache Balm</li>
+          <li>Earbuds/toothpick</li>
+          <li>Honitus</li>
+          <li>Listerine (Optional)</li>
+        </ul>
+      </div>
+      <div>
+        <div class="">
+            <h3 class="flex items-center mb-2 text-md font-medium text-gray-900 dark:text-white">
+              <svg class="mr-2" width="24px" height="24px" viewBox="0 0 24 24" id="magicoon-Filled" xmlns="http://www.w3.org/2000/svg"><defs><style>.cls-1{fill:#41416e;}</style></defs><title>check-circle</title><g id="check-circle-Filled"><path id="check-circle-Filled-2" data-name="check-circle-Filled" class="cls-1" d="M12,2A10,10,0,1,0,22,12,10.016,10.016,0,0,0,12,2Zm4.71,8.71-5,5a1.014,1.014,0,0,1-1.42,0l-3-3a1,1,0,1,1,1.42-1.42L11,13.59l4.29-4.3a1,1,0,0,1,1.42,1.42Z"/></g></svg>
+              Suggested Clothes to carry
+            
+            </h3>
+        </div>
+        <ul class="ml-12 mb-4 space-y-1 max-w-md list-disc list-inside text-gray-500 dark:text-gray-400">
+          <li>Belt</li>
+          <li>Tie</li>
+          <li>Shirt</li>
+          <li>Suit</li>
+          <li>Pant</li>
+          <li>T-Shirt</li>
+          <li>Jeans</li>
+          <li>Night-suit</li>
+          <li> PJs/shorts</li>
+          <li>Cap</li>
+          <li> Wristwatch</li>
+          <li> Wristwatch</li>
+          <li>Shoe Polish</li>
+          <li> Shoe Brush</li>
+          <li>Shoe Shine</li>
+        </ul>
+      </div>
+              </div>
+          </div>
+      </div>
+    </section>
+
+    <div id="academia">
+      <section class="bg-white dark:bg-zinc-900">
+        <div id="Things to carry before you arrive at MUJ" class="py-8 px-4 mx-auto max-w-screen-xl sm:py-16 lg:px-6">
+            <h2 class="mb-8 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">✍️Academia</h2>
+            <p class="flex items-center mb-4 text-lg font-medium text-gray-900 dark:text-white">We have compiled this list of First year syllabus and resources. We have also added links to access the resources. Please note that only resources which we feel are necessary are listed here.
+              <br>
+              <br>
+              The below mentioned resources have been referred by almost all your seniors including us and has been tested saviors in the respective subjects.</p>
+            <div class="grid pt-8 text-left border-t border-gray-200 md:gap-16 dark:border-gray-700 md:grid-cols-2">
+                <div>
+                    <div class="mb-4 ml-6 text-black hover:underline underline-offset-1">
+                        <h3 class=" hover:text-blue-600 hover:dark:hover:text-blue-500 flex items-center mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+                          <a href="https://drive.google.com/drive/u/0/folders/1PX9PH08M-CKPy5dcSVU7mxPI7tY9ckmg">👉B.Tech 1st Year</a>
+                        </h3>
+                    </div>
+                    <div class="mb-4 ml-6 text-black hover:underline underline-offset-1">                        
+                        <h3 class=" hover:text-blue-600 hover:dark:hover:text-blue-500 flex items-center mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+                          <a href="https://drive.google.com/drive/u/0/folders/1RfjNN5p9huSkSIs_rfocZEcFbCqgutyC">👉Psychology E-Books</a>
+                        </h3>
+                    </div>
+                    <div class="mb-4 ml-6 text-black hover:underline underline-offset-1">
+                        <h3 class=" hover:text-blue-600 hover:dark:hover:text-blue-500 flex items-center mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+                          <a href="https://docs.google.com/document/d/1hh0WJZ7DKAG-gcmz89_bWlLnNHhd-RC1IYX6sOP3-tI/edit">👉Udemy Resources</a>
+                        </h3>
+                    </div>
+                    <div class="mb-4 ml-6 text-black hover:underline underline-offset-1">
+                      <h3 class=" hover:text-blue-600 hover:dark:hover:text-blue-500 only:flex items-center mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+                        <a href="https://drive.google.com/drive/folders/1khWjYtanNbmNuYkYxHW7QQ4iBRWG7Tj0">👉GRE & TOEFL Resources</a>
+                      </h3>
+                  </div>
+
+                </div>
+            </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- scripts -->
+    <script>
+      var themeToggleDarkIcon = document.getElementById(
+        "theme-toggle-dark-icon"
+      );
+      var themeToggleLightIcon = document.getElementById(
+        "theme-toggle-light-icon"
+      );
+
+      // Change the icons inside the button based on previous settings
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        themeToggleLightIcon.classList.remove("hidden");
+      } else {
+        themeToggleDarkIcon.classList.remove("hidden");
+      }
+
+      var themeToggleBtn = document.getElementById("theme-toggle");
+
+      themeToggleBtn.addEventListener("click", function () {
+        // toggle icons inside button
+        themeToggleDarkIcon.classList.toggle("hidden");
+        themeToggleLightIcon.classList.toggle("hidden");
+
+        // if set via local storage previously
+        if (localStorage.getItem("color-theme")) {
+          if (localStorage.getItem("color-theme") === "light") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          }
+
+          // if NOT set via local storage previously
+        } else {
+          if (document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "name": "muj-central",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i input.css -o output.css --watch",
+    "minify": "npx tailwindcss -i input.css -o output.css --minify"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.1.8"
+  },
+  "dependencies": {
+    "flowbite": "^1.5.2",
+    "tw-elements": "^1.0.0-alpha12"
+  }
+}
